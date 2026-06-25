@@ -1,14 +1,14 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import CoinInfo from "./Components/CoinInfo";
-import SideNav from "./Components/SideNav"
-
-
+import SideNav from "./Components/SideNav";
+import CoinDetail from "./Components/CoinDetail";
 function App() {
-  const API_KEY = import.meta.env.VITE_APP_API_KEY;
+  const API_KEY = import.meta.env.VITE_APP_COIN_GECKO_API_KEY;
   const [list, setList] = useState(null);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [selectedCoin, setSelectedCoin] = useState(null);
   useEffect(() => {
     const fetchAllCoinData = async () => {
       const response = await fetch(
@@ -41,36 +41,63 @@ function App() {
   return (
     <div className="whole-page">
       <SideNav />
-
-      <h1>My Crypto List</h1>
-      <input
-        type="text"
-        placeholder="Search..."
-        onChange={(inputString) => searchItems(inputString.target.value)}
-      />
-      <ul>
-        {searchInput.length > 0
-          ? filteredResults.map((coin) => (
-              <CoinInfo
-                key={coin.id}
-                id={coin.id}
-                image={coin.image}
-                name={coin.name}
-                symbol={coin.symbol}
-                price={coin.current_price}
-              />
-            ))
-          : list?.map((coin) => (
-              <CoinInfo
-                key={coin.id}
-                id={coin.id}
-                image={coin.image}
-                name={coin.name}
-                symbol={coin.symbol}
-                price={coin.current_price}
-              />
-            ))}
-      </ul>
+      <div className="main-content">
+        {/* {selectedCoin && (
+          <div className="detail-view-container">
+            <button className="close-btn" onClick={() => setSelectedCoin(null)}>
+              ❌ Close Details
+            </button>
+            <CoinDetail id={selectedCoin} />
+          </div>
+        )} */}
+        <h1>My Crypto List</h1>
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(inputString) => searchItems(inputString.target.value)}
+        />
+        <ul>
+          {searchInput.length > 0
+            ? filteredResults.map((coin) => (
+                <div
+                  onClick={() => setSelectedCoin(coin.id)}
+                  className="clickable-row"
+                  key={coin.id}
+                  >
+                  <CoinInfo
+                    id={coin.id}
+                    image={coin.image}
+                    name={coin.name}
+                    symbol={coin.symbol}
+                    price={coin.current_price}
+                  />
+                </div>
+              ))
+            : list?.map((coin) => (
+                <div
+                  onClick={() => setSelectedCoin(coin.id)}
+                  className="clickable-row"
+                  key={coin.id}
+                  >
+                  <CoinInfo
+                    id={coin.id}
+                    image={coin.image}
+                    name={coin.name}
+                    symbol={coin.symbol}
+                    price={coin.current_price}
+                  />
+                </div>
+              ))}
+        </ul>
+      </div>
+      {selectedCoin && (
+        <div className="modal-backdrop" onClick={() => setSelectedCoin(null)}>
+          <div className="modal-content-wrapper" onClick={(e) => e.stopPropagation()}>
+            <button className="close-btn" onClick={() => setSelectedCoin(null)}>❌ CLOSE</button>
+            <CoinDetail id={selectedCoin} />
+          </div>
+        </div>
+      )}
     </div>
   );
 }

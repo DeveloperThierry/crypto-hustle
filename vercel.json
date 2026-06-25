@@ -1,0 +1,12 @@
+{
+    "rewrites": [
+      {
+        "source": "/coingecko-api/:path*",
+        "destination": "https://api.coingecko.com/:path*"
+      },
+      {
+        "source": "/messari-api/:path*",
+        "destination": "https://api.messari.io/:path*"
+      }
+    ]
+  }
