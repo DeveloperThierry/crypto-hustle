@@ -1,27 +1,27 @@
 import { useEffect, useState } from "react";
-const API_KEY = import.meta.env.VITE_APP_MESSARI_API_KEY;
+const API_KEY = import.meta.env.VITE_APP_CRYPTO_COMPARE_API_KEY;
 
-// Mock data structured exactly like Messari's expected schema
+
 const MOCK_NEWS = [
   {
-    title: "BTC Holds Support Level Amid Increased Institutional Inflows",
-    url: "https://messari.io/"
+    TITLE: "BTC Holds Support Level Amid Increased Institutional Inflows",
+    URL: "https://messari.io/"
   },
   {
-    title: "Ethereum Layer-2 Gas Fees Drop to Record Lows Post-Upgrade",
-    url: "https://messari.io/"
+    TITLE: "Ethereum Layer-2 Gas Fees Drop to Record Lows Post-Upgrade",
+    URL: "https://messari.io/"
   },
   {
-    title: "DeFi Protocol Total Value Locked (TVL) Crosses New Milestone",
-    url: "https://messari.io/"
+    TITLE: "DeFi Protocol Total Value Locked (TVL) Crosses New Milestone",
+    URL: "https://messari.io/"
   },
   {
-    title: "Regulatory Clarity Sparks Venture Capital Surge in Web3 Infrastructure",
-    url: "https://messari.io/"
+    TITLE: "Regulatory Clarity Sparks Venture Capital Surge in Web3 Infrastructure",
+    URL: "https://messari.io/"
   },
   {
-    title: "Solana Network Activity Spikes as Decentralized Exchanges Volume Climbs",
-    url: "https://messari.io/"
+    TITLE: "Solana Network Activity Spikes as Decentralized Exchanges Volume Climbs",
+    URL: "https://messari.io/"
   }
 ];
 
@@ -32,18 +32,16 @@ function CryptoNews() {
     const getNewsArticles = async () => {
       try {
         const response = await fetch(
-          "https://api.messari.io/api/v1/news/topics?limit=10",
-          { headers: { "x-messari-api-key": API_KEY } }
-        );
+          `https://data-api.coindesk.com/news/v1/search?search_string=Ethereum%20ecosystem&lang=EN&source_key=coindesk&limit=3&api_key=${API_KEY}`);
         
         if (!response.ok) {
           throw new Error("Network response was not ok. Falling back to mock data.");
         }
 
         const json = await response.json();
-        
-        if (json.data && json.data.length > 0) {
-          setNewsList(json.data);
+        console.log(json)
+        if (json.Data && json.Data.length > 0) {
+          setNewsList(json.Data);
         } else {
           // Fallback if the API returns an empty array successfully
           setNewsList(MOCK_NEWS);
@@ -64,10 +62,10 @@ function CryptoNews() {
       <ul className="side-list">
         {newsList &&
           newsList.map((article, index) => (
-            /* Using a combination of title and index for the key to ensure uniqueness */
-            <li className="news-article" key={`${article.title}-${index}`}>
-              <a href={article.url} target="_blank" rel="noreferrer">
-                {article.title}
+            /* Using a combination of TITLE and index for the key to ensure uniqueness */
+            <li className="news-article" key={`${article.TITLE}-${index}`}>
+              <a href={article.URL} target="_blank" rel="noreferrer">
+                {article.TITLE}
               </a>
             </li>
           ))}
