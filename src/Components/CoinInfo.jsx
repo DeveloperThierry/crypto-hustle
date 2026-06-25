@@ -6,9 +6,9 @@ const CoinInfo = ({ id, image, name, symbol, price }) => {
         src={image}
         alt={`Small icon for ${name} crypto coin`}
       />
-      {name}
-      {price != null ? ` $${price} USD` : null}
-    </li>
+      {name} <span className="tab"></span>
+      {price && price.USD ? ` $${price.USD} USD` : null}
+      </li>
   );
 };
 
