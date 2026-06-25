@@ -1,5 +1,8 @@
 import "./App.css";
 import { useState, useEffect } from "react";
+import CoinInfo from "./Components/CoinInfo"
+
+
 function App() {
   const API_KEY = import.meta.env.VITE_APP_API_KEY;
   const [list, setList] = useState(null);
@@ -23,7 +26,14 @@ function App() {
       <h1>My Crypto List</h1>
       <ul>
         {list?.map((coin) => (
-          <li key={coin.id}>{coin.name}</li>
+          <CoinInfo
+          key={coin.id}
+          id={coin.id}
+          image={coin.image}
+          name={coin.name}
+          symbol={coin.symbol}
+          price={coin.current_price}
+        />
         ))}
       </ul>
     </div>
