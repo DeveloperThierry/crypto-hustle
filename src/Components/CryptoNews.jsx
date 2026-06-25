@@ -39,7 +39,6 @@ function CryptoNews() {
         }
 
         const json = await response.json();
-        console.log(json)
         if (json.Data && json.Data.length > 0) {
           setNewsList(json.Data);
         } else {
