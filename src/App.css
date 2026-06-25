@@ -210,3 +210,20 @@ h1 {
   font-family: "Courier New", Courier, monospace;
   letter-spacing: 1px;
 }
+
+.news-article {
+  padding: 10px 0;
+  border-bottom: 1px dashed #333333;
+}
+
+.news-article a {
+  color: #00ffff; /* Cyber-cyan terminal links */
+  font-size: 0.9rem;
+  display: block;
+  text-align: center;
+}
+
+.news-article a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
