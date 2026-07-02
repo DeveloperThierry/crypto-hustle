@@ -1,5 +1,10 @@
-
-/* Bloomberg Terminal Theme */
+:root {
+  --terminal-green: #00ff00;
+  --terminal-amber: #ff9900;
+  --terminal-dark-gray: #333333;
+  --terminal-black: #000000;
+  --terminal-off-black: #0d0d0d;
+}
 
 body {
   background: #000000;
@@ -241,3 +246,97 @@ nav {
   gap: 18px;
   align-items: center;
 }
+
+/* ==========================================================================
+   New Terminal Chart Rule Extensions
+   ========================================================================== */
+
+.chart-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.chart-container {
+  background-color: var(--terminal-black);
+  padding: 15px;
+  border: 1px solid var(--terminal-dark-gray);
+  display: inline-block;
+}
+
+.chart-title {
+  color: var(--terminal-amber);
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  text-align: left;
+}
+
+/* Recharts Component SVGs Hooks */
+.chart-grid line {
+  stroke: var(--terminal-dark-gray) !important;
+}
+
+.chart-active-dot {
+  fill: var(--terminal-amber) !important;
+  stroke: var(--terminal-black) !important;
+  stroke-width: 1px;
+}
+
+.chart-axis line, 
+.chart-axis path {
+  stroke: var(--terminal-dark-gray) !important;
+}
+
+.chart-y-axis text {
+  fill: var(--terminal-green) !important;
+  font-size: 10px !important;
+  font-family: "Courier New", Courier, monospace !important;
+}
+
+/* Recharts Custom Tooltip Styling Rules */
+.chart-tooltip-wrapper {
+  background-color: var(--terminal-off-black) !important;
+  border: 1px solid var(--terminal-amber) !important;
+  border-radius: 0px !important;
+  font-family: "Courier New", Courier, monospace !important;
+  padding: 8px !important;
+}
+
+.chart-tooltip-item {
+  color: var(--terminal-green) !important;
+}
+
+.chart-tooltip-label {
+  color: #ffffff !important;
+  font-size: 11px !important;
+  font-weight: bold !important;
+}
+
+/* ==========================================================================
+   Terminal Layout Connections for CoinDetail + Chart
+   ========================================================================== */
+
+   .coin-detail-card hr {
+    border: 0;
+    border-top: 1px solid var(--terminal-dark-gray); /* Replaces default hr with crisp panel edge */
+    margin: 15px 0;
+  }
+  
+  .detail-chart-section {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 2px dashed var(--terminal-dark-gray); /* Dashed ledger separator for the chart data */
+    width: 100%;
+    display: flex;
+    justify-content: flex-start; /* Matches text alignment for a true readout vibe */
+  }
+  
+  /* Enhances description paragraphs to look clean above the chart visualization */
+  .detail-body p {
+    margin-bottom: 20px;
+  }

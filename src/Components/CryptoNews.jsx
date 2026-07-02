@@ -11,18 +11,7 @@ const MOCK_NEWS = [
     TITLE: "Ethereum Layer-2 Gas Fees Drop to Record Lows Post-Upgrade",
     URL: "https://messari.io/"
   },
-  {
-    TITLE: "DeFi Protocol Total Value Locked (TVL) Crosses New Milestone",
-    URL: "https://messari.io/"
-  },
-  {
-    TITLE: "Regulatory Clarity Sparks Venture Capital Surge in Web3 Infrastructure",
-    URL: "https://messari.io/"
-  },
-  {
-    TITLE: "Solana Network Activity Spikes as Decentralized Exchanges Volume Climbs",
-    URL: "https://messari.io/"
-  }
+
 ];
 
 function CryptoNews() {
