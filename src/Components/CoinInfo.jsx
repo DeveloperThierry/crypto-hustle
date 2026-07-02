@@ -12,6 +12,7 @@ const CoinInfo = ({ image, name, symbol, price }) => {
           ? ` $${price.USD} USD`
           : ` $${price?.toLocaleString()} USD`}
       </span>
+     
     </li>
   );
 };
